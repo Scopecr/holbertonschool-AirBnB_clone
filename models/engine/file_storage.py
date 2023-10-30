@@ -45,3 +45,5 @@ class FileStorage:
                     self.__objects[key] = models.classes[cls_name](**value)
         except FileNotFoundError:
             pass
+
+
