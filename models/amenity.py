@@ -1,3 +1,3 @@
 #!/usr/bin/python3.
-""" Amenity Module for HBNB project"""
+""" Amenity Module for ABNB project"""
 

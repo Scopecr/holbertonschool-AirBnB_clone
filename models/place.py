@@ -1,3 +1,3 @@
 #!/usr/bin/python3.
-""" Place Module for HBNB project """
+""" Place Module for ABNB project """
 

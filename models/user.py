@@ -1,3 +1,3 @@
 #!/usr/bin/python3.
-""" User Module for HBNB project """
+""" User Module for ABNB project """
 
