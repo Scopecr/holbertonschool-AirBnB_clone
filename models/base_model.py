@@ -1,20 +1,46 @@
-#!/user/bin/python3
-""" Unit tests for the BaseModel class."""
+"""This is the base-model class"""
 
+from datetime import datetime
+from uuid import uuid4
+import models
+class BaseModel:
+    """The base model for other models to inherit from."""
+    def __init__(self, *args, **kwargs):
+        """Init model"""
+        if len(kwargs) is not  0:
+            for key, value in kwargs.items():
+                if key == "id":
+                    self.id = kwargs.get(key)
+                if key == "created_at":
+                    self.created_at = datetime.strptime(kwargs.get(key),
+                                                        "%Y-%m-%dT%H:%M:%S.%f")
+                if key == "updated_at":
+                    self.updated_at = datetime.strptime(kwargs.get(key),
+                                                        "%Y-%m-%dT%H:%M:%S.%f")
+                if key == "name":
+                    self.name = kwargs.get(key)
+                if key == "my_number":
+                    self.my_number = kwargs.get(key)
+        else:
+            self.id = str(uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
+            models.storage.new(self)
 
-import unittest
-from models.base_model import BaseModel
+    def __str__(self):
+        """__str__"""
+        return ("[{}] ({}) {}".format(self.__class__.__name__,
+                                      self.id, self.__dict__))
 
-class TestBaseModel(unittest.TestCase):
-    """
-    Unit tests for the BaseModel class.
-    """
-    def test_create_instance(self):
-        """
-        Test if a BaseModel instance can be created.
-        """
-        obj = BaseModel()
-        self.assertIsInstance(obj, BaseModel)
+    def save(self):
+        """save"""
+        self.updated_at = datetime.now()
+        models.storage.save()
 
-if __name__ == '__main__':
-    unittest.main()
+    def to_dict(self):
+        """ Returns a dictionary"""
+        my_dict = self.__dic__.copy()
+        my_dict['created_at'] = self.created_at.isoformat()
+        my_dict['updated_at'] = self.updated_at.isoformat()
+        my_dict['__class__'] = self.__class__.__name__
+        return(my_dict)
