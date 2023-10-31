@@ -8,7 +8,7 @@ class FileStorage:
     __file_path = "file.json"  # Path to the JSON file
     __objects = {}  # Dictionary to store all objects by <class name>.id
 
-    def all(self):
+    def all(self): 
         """
         Returns the dictionary __objects.
         """
@@ -18,7 +18,8 @@ class FileStorage:
 
     def new(self, obj):
         """
-        Sets the object in __objects with the key <obj class name>.id.
+        Sets the object in __objects with
+        the key <obj class name>.id.
         """
         key = "{}.{}".format(obj.__class__.__name__, obj.id)
         self.__objects[key] = obj
@@ -27,7 +28,8 @@ class FileStorage:
 
     def save(self):
         """
-        Serializes __objects to the JSON file (path: __file_path).
+        Serializes __objects to
+        the JSON file (path: __file_path).
         """
         obj_dict = {}
         for key, value in self.__objects.items():
@@ -38,7 +40,8 @@ class FileStorage:
 
     def reload(self):
         """
-        Deserializes the JSON file to __objects if the file exists.
+        Deserializes the JSON file to __objects
+        if the file exists.
         """
         import models
         try:
@@ -50,5 +53,6 @@ class FileStorage:
         except FileNotFoundError:
             pass
 
+# Path: models/place.py
 
 from console import HBNBCommand
