@@ -1,0 +1,23 @@
+>>> Important Note List to be added here.
++
+>>> 
+>>> Important Note: The following code is not working. I am not sure why. I am still working on it.
++
++```python
++import numpy as np
++import matplotlib.pyplot as plt
++import pandas as pd
++import seaborn as sns
++from sklearn import datasets
++from sklearn.cluster import KMeans
++from sklearn.metrics import silhouette_score
++
++iris = datasets.load_iris()
++X = iris.data
++y = iris.target
++
++km = KMeans(n_clusters=3, random_state=21)
++km.fit(X)
++
++print(silhouette_score(X, km.labels_))
++```
