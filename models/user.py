@@ -2,12 +2,13 @@
 """ User Module for HBNB project """
 
 
-from datetime import datetime
 from console import HBNBCommand
 from models.base_model import BaseModel
-from models.engine.file_storage import FileStorage
-from cmd import Cmd
-import json
+from datetime import datetime
+import uuid
+import models
+from models import storage
+
 
 class User(BaseModel):
     """User class that inherits from BaseModel."""
@@ -17,23 +18,26 @@ class User(BaseModel):
     first_name: str = ""# it will be the User.id
     last_name:str = "" # it will be the User.id
     
+    @property
     def email(self):
         """Returns the email."""
         
-    if self.email is not None: # if email is not empty
-        return self.email
+        if self.email is not None: # if email is not empty
+            return self.email
     
+    @property
     def password(self):
         """Returns the password."""
         
         if self.password is not None:
-            (self.password)
-        return self.password
+            return self.password
     
+    @property
     def first_name(self):
         """Returns the first name."""
         return self.first_name
     
+    @property
     def last_name(self):
         """Returns the last name."""
         return self.last_name

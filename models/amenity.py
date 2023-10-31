@@ -1,17 +1,12 @@
 #!/usr/bin/python3
-<<<<<<< HEAD
 """ Amenity Module for HBNB project"""
 
 
-=======
-"""Defines the Amenity class"""
->>>>>>> 97d5f613968d639c913ef1a9ce20ef2bce6509b3
 from models.base_model import BaseModel
 from datetime import datetime
 from console import HBNBCommand
 
 
-<<<<<<< HEAD
 class Amenity(BaseModel):
     """Amenity class that inherits from BaseModel."""
     name: str = ""
@@ -26,12 +21,8 @@ class Amenity(BaseModel):
                 elif key != '__class__':
                     setattr(self, key, value)
 
+# Compare this snippet from models/user.py:
+
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
   
-=======
-
-class Amenity(BaseModel):
-    """Represent an Amenity object"""
-    name = ""
->>>>>>> 97d5f613968d639c913ef1a9ce20ef2bce6509b3
