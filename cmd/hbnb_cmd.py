@@ -35,6 +35,8 @@ class BaseModel:
         """ Save method """
         self.updated_at = datetime.now()
         models.storage.save()
+        if self.__class__.__name__ == 'BaseModel':
+            models.storage.new(self)
 
     def to_dict(self):
         """ Dictionary representation """
