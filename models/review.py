@@ -2,7 +2,11 @@
 """ Review Module for ABNB project """
 
 
+from datetime import datetime
 from models.base_model import BaseModel
+from models.engine.file_storage import FileStorage
+from cmd import Cmd
+import json
 
 class Review(BaseModel):
     """Review class that inherits from BaseModel."""
@@ -60,3 +64,7 @@ def __init__(self, *args, **kwargs):
         if self.text is not None:
             return self.text
         return self.text_id
+    
+    if __name__ == '__main__':
+    HBNBCommand().cmdloop()
+    

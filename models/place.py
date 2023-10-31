@@ -1,8 +1,11 @@
 #!/usr/bin/python3.
 """ Place Module for HBNB project """
 
-
+from datetime import datetime
 from models.base_model import BaseModel
+from models.engine.file_storage import FileStorage
+from cmd import Cmd
+import json
 
 class Place(BaseModel):
     """Place class that inherits from BaseModel."""
@@ -18,3 +21,6 @@ class Place(BaseModel):
     latitude: str = 0.0
     longitude: str = 0.0
     amenity_ids: str = []
+    
+  if __name__ == '__main__':
+    HBNBCommand().cmdloop()  

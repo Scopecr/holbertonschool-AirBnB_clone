@@ -1,11 +1,11 @@
-#!/usr/bin/python3.
+#!/usr/bin/python3
 """ Amenity Module for HBNB project"""
+
+
 from models.base_model import BaseModel
-    
-class datetime:
-    """ datetime Module for HBNB project"""
 from datetime import datetime
-from models.base_model import BaseModel
+from console import HBNBCommand
+
 
 class Amenity(BaseModel):
     """Amenity class that inherits from BaseModel."""
@@ -20,3 +20,7 @@ class Amenity(BaseModel):
                     setattr(self, key, datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f"))
                 elif key != '__class__':
                     setattr(self, key, value)
+
+if __name__ == '__main__':
+    HBNBCommand().cmdloop()
+  
