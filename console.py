@@ -28,6 +28,39 @@ prompt = "(hbnb) "
         new_instance = models.classes[class_name]()
         new_instance.save()
         print(new_instance.id)
+        """
+        Create a new instance of a class, save it, and print its id.
+        Usage: create <class_name>
+        """
+        if not arg:
+            print("** class name missing **")
+            return
+
+        class_name = arg
+        if class_name not in models.classes:
+            print("** class doesn't exist **")
+            return
+
+        new_instance = models.classes[class_name]()
+        new_instance.save()
+        print(new_instance.id)
+        """
+        Create a new instance of a class, save it, and print its id.
+        Usage: create <class_name>
+        """
+        if not arg: 
+            print("** class name missing **")
+            return
+
+        class_name = arg
+        if class_name not in models.classes:
+            from datetime import datetime
+            print("** class doesn't exist **")
+            return
+
+        new_instance = models.classes[class_name]()
+        new_instance.save()
+        print(new_instance.id)
 
 from datetime import datetime
 
@@ -50,6 +83,7 @@ class HBNBCommand(Cmd):
         """
         if not arg:
             print("** class name missing **")
+            
             return
 
         class_name = arg
@@ -218,33 +252,13 @@ class HBNBCommand(Cmd):
             print(objects[key])
 
 
-
-
-def date():
+class datetime ():
     """
     Prints the current date and time in a specific format.
     Usage: date
     """
-    print(datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
-    """
-    Prints the current date and time in a specific format.
-    Usage: date
-    """
-    from datetime import datetime
-    print(datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
-    """
-    Prints the current date and time in a specific format.
-    Usage: date
-    """
-    from datetime import datetime
-    print(datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
-    """
-    Prints the current date and time in a specific format.
-    Usage: date or date <format>
-    """
-    from datetime import datetime
-    print(datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
     
+       
 
     def do_show(self, arg):
         """

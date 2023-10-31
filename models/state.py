@@ -19,7 +19,6 @@ class State(BaseModel):
     man = ""
     children = ""
 
-
 class State(BaseModel):
     """State class that inherits from BaseModel."""
     name = ""
@@ -33,6 +32,9 @@ class State(BaseModel):
                     setattr(self, key, datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f"))
                 elif key != '__class__':
                     setattr(self, key, value)
+                    
+# Compare this snippet from models/state.py:
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
