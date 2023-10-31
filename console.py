@@ -10,29 +10,11 @@ import cmd
 class HBNBCommand(cmd.Cmd):
     """ Command Line Interpreter for ABNB project"""
     prompt = "(hbnb) "
-
-    def do_quit(self, arg):
-        """ 
-        Exit the program.
-        """
-        return True
-
-    def do_EOF(self, arg):
-        """ 
-        Handle the EOF (End of File) signal.
-        """
-        print()
-        return True
-
-    def emptyline(self):
-        """
-        Override the default behavior when an empty line is entered.
-        """
-        pass
+    
 
     def do_create(self, arg):
         """
-        Create a new instance of BaseModel, save it, and print the id.
+        Create a new instance of a class, save it, and print its id.
         Usage: create <class_name>
         """
         if not arg:
@@ -48,7 +30,54 @@ class HBNBCommand(cmd.Cmd):
         new_instance.save()
         print(new_instance.id)
 
+def date
+    
+
     def do_show(self, arg):
+        """
+        Show the string representation of an instance based on class name and id.
+        Usage: show <class_name> <id>
+        """
+        args = arg.split()
+        if not args:
+            print("** class name missing **")
+            return
+        class_name = args[0]
+        if class_name not in models.classes:
+            print("** class doesn't exist **")
+            return
+        if len(args) < 2:
+            print("** instance id missing **")
+            return
+        obj_id = args[1]
+        key = "{}.{}".format(class_name, obj_id)
+        objects = models.storage.all()
+        if key not in objects:
+            print("** no instance found **")
+        else:
+            print(objects[key])
+        """
+        Show the string representation of an instance based on class name and id.
+        Usage: show <class_name> <id>
+        """
+        args = arg.split()
+        if not args:
+            print("** class name missing **")
+            return
+        class_name = args[0]
+        if class_name not in models.classes:
+            print("** class doesn't exist **")
+            return
+        if len(args) < 2:
+            print("** instance id missing **")
+            return
+        obj_id = args[1]
+        key = "{}.{}".format(class_name, obj_id)
+        objects = models.storage.all()
+        if key not in objects:
+            print("** no instance found **")
+        else:
+            print(objects[key])
         """
         Show the string representation of an instance based on class name and id.
         Usage: show <class_name> <id>
@@ -142,6 +171,25 @@ class HBNBCommand(cmd.Cmd):
             attribute_value = args[3]
             setattr(objects[key], attribute_name, attribute_value)
             models.storage.save()
+
+    def do_quit(self, arg):
+        """ 
+        Exit the program.
+        """
+        return True
+
+    def do_EOF(self, arg):
+        """ 
+        Handle the EOF (End of File) signal.
+        """
+        print()
+        return True
+
+    def emptyline(self):
+        """
+        Override the default behavior when an empty line is entered.
+        """
+        pass
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
