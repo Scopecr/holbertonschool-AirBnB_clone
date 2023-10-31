@@ -2,9 +2,22 @@
 
 from datetime import datetime
 from uuid import uuid4
+from console import HBNBCommand
 import models
+
 class BaseModel:
     """The base model for other models to inherit from."""
+    
+    id: str = ""
+    created_at: datetime = datetime.now()
+    updated_at: datetime = datetime.now()
+
+    def __str__(self):
+        """__str__"""
+        return ("[{}] ({}) {}".format(self.__class__.__name__,
+                                      self.id, self.__dict__))
+
+   
     def __init__(self, *args, **kwargs):
         """Init model"""
         if len(kwargs) is not  0:
@@ -45,6 +58,7 @@ class BaseModel:
         my_dict['__class__'] = self.__class__.__name__
         return(my_dict)
 
+# Compare this snippet from models/user.py:
+
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
-    

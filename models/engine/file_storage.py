@@ -12,6 +12,8 @@ class FileStorage:
         """
         Returns the dictionary __objects.
         """
+        if self.__objects is not None:
+            print("objects is not None")
         return self.__objects
 
     def new(self, obj):
@@ -20,6 +22,8 @@ class FileStorage:
         """
         key = "{}.{}".format(obj.__class__.__name__, obj.id)
         self.__objects[key] = obj
+        for key, value in self.__objects.items():
+            print(key, value)
 
     def save(self):
         """
@@ -47,5 +51,4 @@ class FileStorage:
             pass
 
 
-if __name__ == '__main__':
-    HBNBCommand().cmdloop()
+from console import HBNBCommand
