@@ -1,58 +1,43 @@
-#!/user/bin/python3
-""" File Storage Module for ABNB project """
-
+#!/usr/bin/python3
+"""Class that serializes instances to a JSON file
+    and deserializes JSON file to instances:"""
 
 import json
+import os.path
+
 
 class FileStorage:
-    __file_path = "file.json"  # Path to the JSON file
-    __objects = {}  # Dictionary to store all objects by <class name>.id
+    """Class that serializes instances to a JSON file
+    and deserializes JSON file to instances:"""
+    __file_path = 'file.json'
+    __objects = {}
 
-    def all(self): 
-        """
-        Returns the dictionary __objects.
-        """
-        if self.__objects is not None:
-            print("objects is not None")
-        return self.__objects
+    def all(self, cls=None):
+        """Returns the dictionary of all objects"""
+        if cls:
+            return {key: value for key, value in FileStorage.__objects.items()
+                    if isinstance(value, cls)}
+        return FileStorage.__objects
 
     def new(self, obj):
-        """
-        Sets the object in __objects with
-        the key <obj class name>.id.
-        """
-        key = "{}.{}".format(obj.__class__.__name__, obj.id)
-        self.__objects[key] = obj
-        for key, value in self.__objects.items():
-            print(key, value)
+        """Sets in __objects the obj with key <obj class name>.id
+        Args:
+            obj: object to set in __objects"""
+        key = "{}.{}".format(type(obj).__name__, obj.id)
+        FileStorage.__objects[key] = obj
 
     def save(self):
-        """
-        Serializes __objects to
-        the JSON file (path: __file_path).
-        """
-        obj_dict = {}
-        for key, value in self.__objects.items():
-            obj_dict[key] = value.to_dict()
-
-        with open(self.__file_path, "w") as file:
-            file.write(json.dumps(obj_dict))
+        """Serializes __objects to the JSON file (path: __file_path)"""
+        with open(FileStorage.__file_path, 'w') as f:
+            json.dump({key: val.to_dict() for key, val in
+                       FileStorage.__objects.items()}, f)
 
     def reload(self):
-        """
-        Deserializes the JSON file to __objects
-        if the file exists.
-        """
-        import models
-        try:
-            with open(self.__file_path, "r") as file:
-                obj_dict = json.loads(file.read())
-                for key, value in obj_dict.items():
-                    cls_name, obj_id = key.split('.')
-                    self.__objects[key] = models.classes[cls_name](**value)
-        except FileNotFoundError:
-            pass
-
-# Path: models/place.py
-
-from console import HBNBCommand
+        """Deserializes the JSON file to __objects (only if the JSON file
+        (__file_path) exists ; otherwise, do nothing. If the file doesn’t
+        exist, no exception should be raised)"""
+        from models.base_model import BaseModel
+        if os.path.exists(FileStorage.__file_path):
+            with open(FileStorage.__file_path, 'r') as f:
+                FileStorage.__objects = {k: BaseModel(
+                    **v) for k, v in json.load(f).items()}
