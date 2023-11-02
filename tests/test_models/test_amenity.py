@@ -12,9 +12,7 @@ class TestAmenity(unittest.TestCase):
 
     def test_attributes(self):
         """Test the attributes of Amenity"""
-        amenity = Amenity
-        self.assertIsInstance(amenity, Amenity)
-        self.assertEqual(amenity.name, "")
+        self.assertEqual(self.my_amenity.name, "Pool")
 
 if __name__ == '__main__':
     unittest.main()
