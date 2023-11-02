@@ -1,22 +1,31 @@
+#!/usr/bin/python3
+
+
 import unittest
 from models.state import State
+from models.base_model import BaseModel
+
 
 class TestState(unittest.TestCase):
-    def test_state_instance(self):
-        """Test if a State instance can be created"""
-        state = State()
-        self.assertIsInstance(state, State)
 
-    def test_state_name_default(self):
-        """Test if the 'name' attribute of a State instance is empty by default"""
-        state = State()
-        self.assertEqual(state.name, "")
+    def setUp(self):
+        """Set up for the tests"""
+        self.my_state = State()
+        self.my_state.name = "California"
 
-    def test_state_name_assignment(self):
-        """Test if the 'name' attribute can be assigned a value"""
-        state = State()
-        state.name = "New York"
-        self.assertEqual(state.name, "New York")
+    def test_attributes(self):
+        """Test the attributes of State"""
+        self.assertEqual(self.my_state.name, "California")
+
+    def test_inheritance(self):
+        """Test if State inherits from BaseModel"""
+        self.assertTrue(issubclass(type(self.my_state), BaseModel))
+
+    def test_str(self):
+        """Test the __str__ method"""
+        self.assertEqual(str(self.my_state), "[State] ({}) {}".
+                         format(self.my_state.id, self.my_state.__dict__))
+
 
 if __name__ == '__main__':
     unittest.main()
