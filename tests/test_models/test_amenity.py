@@ -3,10 +3,6 @@
 import unittest
 from models.amenity import Amenity
 
-
-import unittest
-from models.amenity import Amenity
-
 class TestAmenity(unittest.TestCase):
 
     def setUp(self):
