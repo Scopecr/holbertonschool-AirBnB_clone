@@ -1,64 +1,54 @@
-"""This is the base-model class"""
-
+#!/bin/usr/python3
+"""This module defines a class BaseModel"""
+import uuid
 from datetime import datetime
-from uuid import uuid4
-from console import HBNBCommand
-import models
+from models import storage
 
-class BaseModel:
-    """The base model for other models to inherit from."""
-    
-    id: str = ""
-    created_at: datetime = datetime.now()
-    updated_at: datetime = datetime.now()
 
-    def __str__(self):
-        """__str__"""
-        return ("[{}] ({}) {}".format(self.__class__.__name__,
-                                      self.id, self.__dict__))
+class BaseModel():
+    """This class defines all common attributes/methods for other classes"""
 
-   
     def __init__(self, *args, **kwargs):
-        """Init model"""
-        if len(kwargs) is not  0:
+        """This method initializes a BaseModel instance
+        Args:
+            *args: unused
+            **kwargs: key/value pairs used to create instance
+        attributes:
+            id: unique id for each instance
+            created_at: creation date
+            updated_at: date of last update
+            storage: instance of FileStorage class"""
+        if kwargs:
             for key, value in kwargs.items():
-                if key == "id":
-                    self.id = kwargs.get(key)
-                if key == "created_at":
-                    self.created_at = datetime.strptime(kwargs.get(key),
-                                                        "%Y-%m-%dT%H:%M:%S.%f")
-                if key == "updated_at":
-                    self.updated_at = datetime.strptime(kwargs.get(key),
-                                                        "%Y-%m-%dT%H:%M:%S.%f")
-                if key == "name":
-                    self.name = kwargs.get(key)
-                if key == "my_number":
-                    self.my_number = kwargs.get(key)
+                if key == "created_at" or key == "updated_at":
+                    setattr(self, key, datetime.strptime(
+                        value, "%Y-%m-%dT%H:%M:%S.%f"))
+                elif key != "__class__":
+                    setattr(self, key, value)
+            self.id = kwargs["id"]
         else:
-            self.id = str(uuid4())
+            self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
-            models.storage.new(self)
+            storage.new(self)
 
     def __str__(self):
-        """__str__"""
-        return ("[{}] ({}) {}".format(self.__class__.__name__,
-                                      self.id, self.__dict__))
+        """This method returns a string representation of a BaseModel
+        instance"""
+        return "[{}] ({}) {}".format(self.__class__.__name__,
+                                     self.id, self.__dict__)
 
     def save(self):
-        """save"""
+        """This method updates the public instance attribute updated_at
+        with the current datetime when the object is saved"""
         self.updated_at = datetime.now()
-        models.storage.save()
+        storage.save()
 
     def to_dict(self):
-        """ Returns a dictionary"""
-        my_dict = self.__dic__.copy()
-        my_dict['created_at'] = self.created_at.isoformat()
-        my_dict['updated_at'] = self.updated_at.isoformat()
-        my_dict['__class__'] = self.__class__.__name__
-        return(my_dict)
-
-# Compare this snippet from models/user.py:
-
-if __name__ == '__main__':
-    HBNBCommand().cmdloop()
+        """This method returns a dictionary containing all keys/values
+        of __dict__ of the instance"""
+        obj_dict = self.__dict__.copy()
+        obj_dict['__class__'] = self.__class__.__name__
+        obj_dict['created_at'] = self.created_at.isoformat()
+        obj_dict['updated_at'] = self.updated_at.isoformat()
+        return obj_dict
