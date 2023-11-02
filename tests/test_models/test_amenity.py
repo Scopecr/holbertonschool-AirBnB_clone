@@ -2,7 +2,15 @@
 
 import unittest
 from models.amenity import Amenity
+from tests.test_models.test_base_model import test_basemodel
+import models
+from datetime import datetime
+from models.base_model import Base
+from models.base_model import BaseModel
 
+
+import unittest
+from models.amenity import Amenity
 
 class TestAmenity(unittest.TestCase):
 
@@ -13,8 +21,9 @@ class TestAmenity(unittest.TestCase):
 
     def test_attributes(self):
         """Test the attributes of Amenity"""
-        self.assertEqual(self.my_amenity.name, "Pool")
-
+        amenity = Amenity
+        self.assertIsInstance(amenity, Amenity)
+        self.assertEqual(amenity.name, "")
 
 if __name__ == '__main__':
     unittest.main()
