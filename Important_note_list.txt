@@ -1,7 +1,13 @@
->>> Important Note List to be added here.
+>>> NOTES 
+>>>Important Note List.
+- in the Python.
++
++ This is the list of all the Notes Informations - *(Most Important) in the Python.
++ The have been collected from various sources and are very useful for the Python Developers.
++ The list is very useful for the Python Developers.
 +
 >>> 
->>> Important Note: The following code is not working. I am not sure why. I am still working on it.
+>>> Important Note: 1
 +
 +```python
 +import numpy as np
@@ -23,6 +29,9 @@
 +```
 
 
+>>> 
+
++```python
 >>> import uuid
 
 >>> # make a UUID based on the host ID and current time
@@ -55,3 +64,5 @@ b'\x00\x01\x02\x03\x04\x05\x06\x07\x08\t\n\x0b\x0c\r\x0e\x0f'
 >>> # make a UUID from a 16-byte string
 >>> uuid.UUID(bytes=x.bytes)
 UUID('00010203-0405-0607-0809-0a0b0c0d0e0f')
+
+>>> Dictionary'
