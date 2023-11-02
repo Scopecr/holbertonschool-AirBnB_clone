@@ -1,22 +1,30 @@
 #!/usr/bin/python3
 
 import unittest
+from tests.test_models.test_base_model import test_basemodel
 from models.city import City
 
-
 class TestCity(unittest.TestCase):
-
     def setUp(self):
-        """Set up for the tests"""
-        self.my_city = City()
-        self.my_city.state_id = "CA"
-        self.my_city.name = "San Francisco"
+        self.city = City()
 
-    def test_attributes(self):
-        """Test the attributes of City"""
-        self.assertEqual(self.my_city.state_id, "CA")
-        self.assertEqual(self.my_city.name, "San Francisco")
+    def test_state_id_attribute(self):
+        """Verify that the state_id attribute is initialized as an empty string"""
+        self.assertEqual(self.city.state_id, "")
 
+    def test_name_attribute(self):
+        """Verify that the name attribute is initialized as an empty string"""
+        self.assertEqual(self.city.name, "")
+
+    def test_state_id_assignment(self):
+        """Verify that a new value can be assigned to the state_id attribute"""
+        self.city.state_id = "CA"
+        self.assertEqual(self.city.state_id, "CA")
+
+    def test_name_assignment(self):
+        """Verify that a new value can be assigned to the name attribute"""
+        self.city.name = "Los Angeles"
+        self.assertEqual(self.city.name, "Los Angeles")
 
 if __name__ == '__main__':
     unittest.main()
