@@ -9,6 +9,8 @@ from models.state import State
 from models.city import City
 from models.amenity import Amenity
 from models.review import Review
+from models.engine.file_storage import FileStorage
+
 from models import storage
 
 
@@ -39,44 +41,41 @@ class HBNBCommand(cmd.Cmd):
         and prints the id."""
         if not arg:
             print("** class name missing **")
-        elif arg not in ["BaseModel", "User", "Place", "State", "City",
-                         "Amenity", "Review"]:
+            return
+        elif arg not in globals():
             print("** class doesn't exist **")
+            return
         else:
-            if arg == "BaseModel":
-                new_instance = BaseModel()
-            elif arg == "User":
-                new_instance = User()
-            elif arg == "Place":
-                new_instance = Place()
-            elif arg == "State":
-                new_instance = State()
-            elif arg == "City":
-                new_instance = City()
-            elif arg == "Amenity":
-                new_instance = Amenity()
-            elif arg == "Review":
-                new_instance = Review()
+            """creates new instance for the class"""
+            new_instance = globals()[arg]()
+            """saves the new instance"""
             new_instance.save()
+            """print id of instance"""
             print(new_instance.id)
 
     def do_show(self, arg):
         """Prints the string representation of an instance based on the class
         name and id."""
         args = arg.split()
-        if len(args) == 0:
-            print("** class name missing **")
-        elif args[0] not in ["BaseModel", "User", "Place", "State", "City",
-                             "Amenity", "Review"]:
-            print("** class doesn't exist **")
-        elif len(args) == 1:
+        if len(args) == 1:
             print("** instance id missing **")
+            return
+        if args[0] not in globals() or not \
+                issubclass(globals()[args[0]], BaseModel):
+            print("** class doesn't exist **")
+            return
+        # & Check if the id is provided
+        if len(args) == 1:
+            print("** instance id missing **")
+            return
+        # & Create a key with the class name and id
+        key = args[0] + "." + args[1]
+        # & Check if the instance exists
+        if key in storage.all():
+            # & Print the instance
+            print(storage.all()[key])
         else:
-            key = args[0] + "." + args[1]
-            if key not in storage.all():
-                print("** no instance found **")
-            else:
-                print(storage.all()[key])
+            print("** no instance found **")
 
     def do_destroy(self, arg):
         """Deletes an instance based on the class name and id (save the change
