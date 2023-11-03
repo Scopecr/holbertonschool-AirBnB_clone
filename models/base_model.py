@@ -1,60 +1,52 @@
 #!/usr/bin/python3
-# & This module defines a base class for all models in our hbnb clone
-
-# & Import necessary modules
-import uuid
+"""Module BaseModel Class"""
 from datetime import datetime
 import models
+import uuid
 
 
 class BaseModel:
-    """A base class for all hbnb models
-    that defines all common attributes/methods
-    for other classes"""
-    # & Initialize a new BaseModel
-
     def __init__(self, *args, **kwargs):
-        """
-        If kwargs are provided, set them as attributes.
-        Otherwise, set default attributes.
-        """
+        """Initialize a new BaseModel instance"""
         if kwargs:
+            # If keyword arguments are provided,
+            # initialize the instance attributes
             for key, value in kwargs.items():
-                # & Ignore __class__ attribute
                 if key == "__class__":
+                    # Skip the __class__ key
                     pass
-                # & Convert string datetime to datetime object
                 elif key == "created_at" or key == "updated_at":
+                    # Convert the datetime strings to datetime objects
                     setattr(self, key,
                             datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f"))
-                # & Set other attributes
                 else:
                     setattr(self, key, value)
         else:
-            # & Set default attributes
-            self.id = str(uuid.uuid4())  # & Create a unique UUID
-            self.created_at = datetime.now()  # & Set the creation time to now
-            self.updated_at = datetime.now()  # & Set the update time to now
-            models.storage.new(self)  # & Add the new instance to storage
+            # If no keyword arguments are provided, generate new values
+            self.id = str(uuid.uuid4())
+            self.created_at = self.updated_at = datetime.now()
+            models.storage.new(self)  # Add the new object
+            # to the storage system
 
-    # & Return a string representation of the BaseModel instance
     def __str__(self):
-        return F"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
+        """String representation of the object"""
+        return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
 
-    # & Update updated_at with the current datetime and save to storage
     def save(self):
+        """Update the 'updated_at' attribute with the current
+        datetime and save the object"""
+        # Update the 'updated_at' attribute with the current datetime
         self.updated_at = datetime.now()
-        models.storage.new(self)
+        # Save the object using the storage system
         models.storage.save()
 
-    # & Return a dictionary representation of the BaseModel instance
     def to_dict(self):
-        """
-        Convert datetime objects to ISO format strings.
-        """
-        new_dict = self.__dict__.copy()
-        new_dict["__class__"] = self.__class__.__name__
-        # & Convert datetime objects to ISO format strings
-        new_dict["created_at"] = self.created_at.isoformat()
-        new_dict["updated_at"] = self.updated_at.isoformat()
-        return new_dict
+        """Return a dictionary containing
+        object attributes for serialization"""
+        obj_dict = self.__dict__.copy()  # Create a copy of the attributes
+        obj_dict["__class__"] = self.__class__.__name__
+        # Update the 'created_at' and 'updated_at' attributes
+        # to use the ISO 8601 format
+        obj_dict["created_at"] = self.created_at.isoformat()
+        obj_dict["updated_at"] = self.updated_at.isoformat()
+        return obj_dict
