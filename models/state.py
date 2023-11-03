@@ -8,4 +8,4 @@ class State(BaseModel):
     """City class that inherits from BaseModel
     Attributes:
         name (str): The state name."""
-    name = ""
+    name = "" # & Add the public class attribute name
