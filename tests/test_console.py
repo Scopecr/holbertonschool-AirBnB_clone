@@ -5,7 +5,6 @@ Unittest for console command interpreter
 import unittest
 from unittest.mock import patch
 from io import StringIO
-import pep8
 import os
 import json
 import console
