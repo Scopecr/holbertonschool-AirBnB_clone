@@ -6,8 +6,8 @@ This repository contains the first step towards building our first full web appl
 
 ## File Structure
 
-AirBnBClone/ 
-|-- models/ 
+AirBnBClone 
+|-- models
 |   |-- __init__.py 
 |   |-- amenity.py 
 |   |-- base_model.py 
@@ -16,13 +16,13 @@ AirBnBClone/
 |   |-- review.py 
 |   |-- state.py 
 |   |-- user.py  
-|-- tests/ 
-|   |-- __pycache__/  
-|   |-- engine/ 
+|-- tests 
+|   |-- __pycache__  
+|   |-- engine 
 |   |   |   |-- __init__.py 
 |   |   |   |-- test_file_storage.py 
 |   |-- __init__.py 
-|   |-- test_models/ 
+|   |-- test_models 
 |   |   |-- __init__.py 
 |   |   |-- test_amenity.py 
 |   |   |-- test_base_model.py 
