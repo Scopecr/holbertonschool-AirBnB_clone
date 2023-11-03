@@ -5,7 +5,7 @@ from console import HBNBCommand
 
 
 class TestHBNBCommand(unittest.TestCase):
-""" Test cases class """
+    """ Test cases class """
 
     def test_prompt(self):
         """ Test prompt """
