@@ -6,37 +6,37 @@ This repository contains the first step towards building our first full web appl
 
 ## File Structure
 
-AirBnBClone/
-|-- models/
-|   |-- __init__.py
-|   |-- amenity.py
-|   |-- base_model.py
-|   |-- city.py
-|   |-- place.py
-|   |-- review.py
-|   |-- state.py
-|   |-- user.py
-|-- tests/
-|   |-- __pycache__/
-|   |-- engine/
-|   |   |   |-- __init__.py
-|   |   |   |-- test_file_storage.py
-|   |-- __init__.py
-|   |-- test_models/
-|   |   |-- __init__.py
-|   |   |-- test_amenity.py
-|   |   |-- test_base_model.py
-|   |   |-- test_city.py
-|   |   |-- test_place.py
-|   |   |-- test_review.py
-|   |   |-- test_state.py
-|   |   |-- test_user.py
+AirBnBClone/ 
+|-- models/ 
+|   |-- __init__.py 
+|   |-- amenity.py 
+|   |-- base_model.py 
+|   |-- city.py 
+|   |-- place.py 
+|   |-- review.py 
+|   |-- state.py 
+|   |-- user.py  
+|-- tests/ 
+|   |-- __pycache__/  
+|   |-- engine/ 
+|   |   |   |-- __init__.py 
+|   |   |   |-- test_file_storage.py 
+|   |-- __init__.py 
+|   |-- test_models/ 
+|   |   |-- __init__.py 
+|   |   |-- test_amenity.py 
+|   |   |-- test_base_model.py 
+|   |   |-- test_city.py 
+|   |   |-- test_place.py 
+|   |   |-- test_review.py 
+|   |   |-- test_state.py 
+|   |   |-- test_user.py 
 |   |
-|   |-- __init__.py
+|   |-- __init__.py 
 |-- 
-|-- AUTHORS
-|-- console.py
-|-- README.md
+|-- AUTHORS 
+|-- console.py 
+|-- README.md 
 
 
 ## Directory | Description |
