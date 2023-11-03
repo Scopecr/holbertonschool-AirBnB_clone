@@ -1,12 +1,13 @@
 #!/usr/bin/python3
 
 import unittest
-from tests.test_models.test_base_model import test_basemodel
 from models.city import City
 
 class TestCity(unittest.TestCase):
     def setUp(self):
         self.city = City()
+        self.city.state_id = "CA"
+        self.city.name = "San Francisco"
 
     def test_state_id_attribute(self):
         """Verify that the state_id attribute is initialized as an empty string"""
