@@ -13,3 +13,7 @@ class Review(BaseModel):
     place_id = ""
     user_id = ""
     text = ""
+
+    def __str__(self):
+        """Returns the string representation of a Review instance."""
+        return f"[(self.__class__.__name__)] ((self.id)) (self.__dict__)"
