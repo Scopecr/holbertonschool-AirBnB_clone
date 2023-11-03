@@ -41,31 +41,31 @@ AirBnBClone/
 
 ## Directory | Description |
 
-**module**: Contains all the classes used for the entire project.
-**engine**: Contains the file storage class.
-**tests**: Contains all the unittests.
+* **module**: Contains all the classes used for the entire project.
+* **engine**: Contains the file storage class.
+* **tests**: Contains all the unittests.
 
 
 ## File | Description |
 
-models/**base_model.py:** The BaseModel class of the project.
-models/**amenity.py:** The Amenity class of the project.
-models/**city.py**: The City class of the project.
-models/**place.py:** The Place class of the project.
-models/**review.py:** The Review class of the project.
-models/**state.py:** The State class of the project.
-models/**user.py:** The User class of the project.
+* models/ **base_model.py:** The BaseModel class of the project.
+* models/ **amenity.py:** The Amenity class of the project.
+* models/ **city.py**: The City class of the project.
+* models/ **place.py:** The Place class of the project.
+* models/ **review.py:** The Review class of the project.
+* models/ **state.py:** The State class of the project.
+* models/ **user.py:** The User class of the project.
 --- 
-models/engine/**__init__.py:** The init file of the engine directory.
-models/engine/**test_file_storage.py:** The FileStorage class of the project.
+* models/engine/**__init__.py:** The init file of the engine directory.
+* models/engine/**test_file_storage.py:** The FileStorage class of the project.
 ---
-tests/**__init__.py:** The init file of the tests directory.
-tests/test_models/**test_base_model.py:** The unittests for the BaseModel class.
-tests/test_models/**test_city.py:** The unittests for the City class.
-tests/test_models/**test_place.py:** The unittests for the Place class.
-tests/test_models/**test_review.py:** The unittests for the Review class.
-tests/test_models/**test_state.py:** The unittests for the State class.
-tests/test_models/**test_user.py:** The unittests for the User class.
+* tests/ **__init__.py:** The init file of the tests directory.
+* tests/ test_models/ **test_base_model.py:** The unittests for the BaseModel class.
+* tests/ test_models/ **test_city.py:** The unittests for the City class.
+* tests/ test_models/ **test_place.py:** The unittests for the Place class.
+* tests/ test_models/ **test_review.py:** The unittests for the Review class.
+* tests/ test_models/ **test_state.py:** The unittests for the State class.
+* tests/ test_models/ **test_user.py:** The unittests for the User class.
 
 
 ## Class Definitions
