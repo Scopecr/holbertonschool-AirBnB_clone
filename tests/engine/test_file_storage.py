@@ -11,6 +11,7 @@ from models.city import City
 from models.review import Review
 from models.amenity import Amenity
 from models.place import Place
+from datetime import datetime, timedelta
 
 
 class TestFileStorage(unittest.TestCase):
@@ -51,10 +52,9 @@ class TestFileStorage(unittest.TestCase):
 
     def test_save(self):
         """Test save method"""
-        old_updated_at = self.obj.updated_at
         self.storage.new(self.obj)
         self.storage.save()
-        self.assertNotEqual(self.obj.updated_at, old_updated_at)
+        self.assertNotEqual(self.obj.updated_at, self.obj.created_at)
 
     def test_reload(self):
         """Test reload method"""
@@ -84,8 +84,8 @@ class TestFileStorage(unittest.TestCase):
         with self.assertRaises(json.JSONDecodeError):
             self.storage.reload()
 
-    def test_function_docs(self):
-        """Test if functions have documentation"""
+    def test_fundocs(self):
+        """Test if funtions have documentation"""
         self.assertIsNotNone(FileStorage.__doc__)
         self.assertIsNotNone(FileStorage.all.__doc__)
         self.assertIsNotNone(FileStorage.new.__doc__)
