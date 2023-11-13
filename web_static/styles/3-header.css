@@ -6,10 +6,9 @@ header{
 }
 
 .logo{
-    background-image: url(pic/logo.png);
-    background-size: contain;
-    background-repeat: no-repeat;
-    height: 30px;
-    width: 100px;
+    background: url(pic/logo.png) no-repeat;
+    background-position: left;
+    display: block;
+    height: 100%;
     margin-left: 20px;
 }
